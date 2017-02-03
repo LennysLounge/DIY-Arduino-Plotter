@@ -1,27 +1,11 @@
+const {app,BrowserWindow} = require('electron');
 
-const DEBUG = true;
-function dbmsg(str) {
-    if (DEBUG) {
-        console.log(str);
-    }
-}
-function dbdata(str) {
-    if (DEBUG) {
-        console.dir(str);
-    }
-}
-const electron = require('electron');
+let win;
 
-
-
-var BrowserWindow = electron.BrowserWindow;
-const {app} = electron;
-app.on('ready', function(){
-    var mainWindow = new BrowserWindow({
-        width:800,
-        height:600
-    });
-    mainWindow.loadURL('file://'+ __dirname +"/index.html");
+app.on('ready', () => {
+    win = new BrowserWindow({width:800,height:600});
+    win.loadURL('file://'+ __dirname +"/index.html");
+	win.webContents.openDevTools();
 });
 
 
