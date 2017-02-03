@@ -11,6 +11,9 @@ function dbdata(str) {
     }
 }
 const electron = require('electron');
+
+
+
 var BrowserWindow = electron.BrowserWindow;
 const {app} = electron;
 app.on('ready', function(){
@@ -21,9 +24,6 @@ app.on('ready', function(){
     mainWindow.loadURL('file://'+ __dirname +"/index.html");
 });
 
-var lines = [];
-
-const fs = require('fs');
 
 /*
 SerialPort.list(function (err, ports) {

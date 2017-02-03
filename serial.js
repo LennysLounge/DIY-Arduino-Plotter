@@ -12,20 +12,28 @@ function dbdata(str) {
 
 var serialport = require('serialport');
 const SerialPort = serialport;
+const {dialog} = require('electron').remote;
+var lines = [];
+
+const fs = require('fs');
+
 
 var port = new SerialPort("COM4", {
     baudRate: 9600,
     parser: SerialPort.parsers.readline("\r\n")
 });
-function sendSerial(){
+
+function sendSerial() {
     var str = document.getElementById("input").value;
-    if(port.isReady){
+    if (port.isReady) {
         port.write(str);
-    }else{
+    } else {
         alert("Serial not ready");
     }
 }
+
 port.isReady = false;
+
 port.on('data', function (data) {
     if (data == "begin#") {
         port.isReady = true;
@@ -33,6 +41,22 @@ port.on('data', function (data) {
     }
     dbdata(data);
 });
+
 port.on('error', function (err) {
     dbmsg('Error: ', err.message);
 });
+
+function openFile() {
+    dialog.showOpenDialog(function (fileNames) {
+        if (fileNames === undefined) return;
+        var fileName = fileNames[0];
+
+        fs.readFile(fileName, 'utf8', (err, data) => {
+            if (err) throw err;
+            console.log(data);
+            lines = data.split("\n");
+        });
+
+    });
+
+}

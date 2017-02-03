@@ -14,15 +14,7 @@
 	<button onclick="sendSerial()">Send</button><br>
   <button id="openFile" onclick="openFile();">Open</button>
     <script>  
-    var remote = require('remote');
-    var dialog = remote.require('dialog'); 
-    function openFile () {
-
-  dialog.showOpenDialog(function (fileNames) {
-
-  }); 
-
-}
+  
   /*var sp = require('serialport');
 
   sp.list(function(err, ports) {
