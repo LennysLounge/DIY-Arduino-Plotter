@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+	<script src="serial.js"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    We are using node <script>document.write(process.versions.node)</script>,
+    Chrome <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>.
+	<input type="text" id="input">
+	<button onclick="sendSerial()">Send</button><br>
+  <button id="openFile" onclick="openFile();">Open</button>
+    <script>  
+    var remote = require('remote');
+    var dialog = remote.require('dialog'); 
+    function openFile () {
+
+  dialog.showOpenDialog(function (fileNames) {
+
+  }); 
+
+}
+  /*var sp = require('serialport');
+
+  sp.list(function(err, ports) {
+    console.log(ports);
+  });*/
+</script>  
+  </body>
+</html>
