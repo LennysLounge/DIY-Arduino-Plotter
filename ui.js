@@ -1,8 +1,12 @@
 const {dialog,Menu} = require('electron').remote;
+
 function setCOMPort(port){
     console.log(port);
 }
-
+function setMenu(){
+    const menu = Menu.buildFromTemplate(menuTemplate);
+    Menu.setApplicationMenu(menu);
+}
 const menuTemplate = [
     {
         label: 'File',

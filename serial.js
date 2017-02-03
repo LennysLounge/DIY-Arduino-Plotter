@@ -16,15 +16,11 @@ var GCODEviewer = new CODEviewer(document.getElementById("GCODEviewer"));
 SerialPort.list((err, ports) => {
     ports.forEach(function (port) {
         menuTemplate[1].submenu[1].submenu.push({ label: port.comName,click: () => {setCOMPort(port.comName);}});
-        //console.log(port.comName);
     });
-    const menu = Menu.buildFromTemplate(menuTemplate);
-    Menu.setApplicationMenu(menu);
+    setMenu();
 });
 
-const menu = Menu.buildFromTemplate(menuTemplate);
-
-Menu.setApplicationMenu(menu);
+setMenu();
 
 function CODEviewer(e) {
     this.lines = [];
