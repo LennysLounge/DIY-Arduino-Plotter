@@ -1,25 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-	<script src="serial.js"></script>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-	<input type="text" id="input">
-	<button onclick="sendSerial()">Send</button><br>
-  <button id="openFile" onclick="openFile();">Open</button>
-    <script>  
-  
-  /*var sp = require('serialport');
 
-  sp.list(function(err, ports) {
-    console.log(ports);
-  });*/
-</script>  
-  </body>
+<head>
+	<meta charset="UTF-8">
+	<title>Hello World!</title>
+	
+	<style>
+		pre {
+			font-family: monospace;
+			background-color: #fff;
+			width: em(440);
+			margin: 4em auto;
+			padding: 0.5em;
+			border-radius: .25em;
+			box-shadow: .1em .1em .5em rgba(0, 0, 0, .45);
+			line-height: 0;
+			counter-reset: line;
+		
+		
+		span {
+			display: block;
+			line-height: 1.5rem;
+			&:before {
+				counter-increment: line;
+				content: counter(line);
+				display: inline-block;
+				border-right: 1px solid #ddd;
+				padding: 0 .5em;
+				margin-right: .5em;
+				color: #888
+			}
+		}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="GCODEviewer"></div>
+	<button id="btnSend" onclick="btnSendSerial(this)">Start</button><br>
+	<button id="openFile" onclick="openFile();">Open</button>
+	<script src="serial.js"></script>
+	<script>
+		/*var sp = require('serialport');
+
+sp.list(function(err, ports) {
+console.log(ports);
+});*/
+
+	</script>
+</body>
+
 </html>
