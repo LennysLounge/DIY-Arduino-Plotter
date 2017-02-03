@@ -6,24 +6,22 @@ if (DEBUG) {
     dbdata = console.dir.bind(window.console);
 }
 
-var serialport = require('serialport');
-const SerialPort = serialport;
+//var serialport = require('serialport');
+const SerialPort = require('serialport');
 var lines = [];
-var linesToSend = [];
 var currentLine = 0;
 
 var GCODEviewer = new CODEviewer(document.getElementById("GCODEviewer"));
 
 SerialPort.list((err, ports) => {
     ports.forEach(function (port) {
-        menuTemplate[1].submenu[1].submenu.push({ label: port.comName });
-        console.log(port.comName);
+        menuTemplate[1].submenu[1].submenu.push({ label: port.comName,click: () => {setCOMPort(port.comName);}});
+        //console.log(port.comName);
     });
     const menu = Menu.buildFromTemplate(menuTemplate);
     Menu.setApplicationMenu(menu);
 });
 
-dbmsg(menuTemplate);
 const menu = Menu.buildFromTemplate(menuTemplate);
 
 Menu.setApplicationMenu(menu);
