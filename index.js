@@ -1,7 +1,29 @@
-const {app,BrowserWindow} = require('electron');
+const {app,BrowserWindow,Menu} = require('electron');
 
 let win;
 
+/*
+const menuTemplate = [
+    {
+        label: 'File',
+        submenu: [
+            {
+                label: 'Open',
+                click: () => {
+                    console.log('About Clicked');
+                }
+            }, {
+                label: 'Quit',
+                click: () => {
+                    app.quit();
+                }
+            }
+        ]
+    }
+];
+const menu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(menu);
+*/
 app.on('ready', () => {
     win = new BrowserWindow({width:800,height:600});
     win.loadURL('file://'+ __dirname +"/index.html");

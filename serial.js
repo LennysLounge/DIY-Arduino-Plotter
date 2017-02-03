@@ -1,19 +1,45 @@
 const DEBUG = true;
-function dbmsg(str) {
-    if (DEBUG) {
-        console.log(str);
-    }
-}
-function dbdata(str) {
-    if (DEBUG) {
-        console.dir(str);
-    }
-}
+if( DEBUG ) var debug = console.log.bind(window.console);
+else var debug = function(){};
 
 var serialport = require('serialport');
 const SerialPort = serialport;
-const {dialog} = require('electron').remote;
+const {dialog,Menu} = require('electron').remote;
 var lines = [];
+
+
+
+
+
+const menuTemplate = [
+    {
+        label: 'File',
+        submenu: [
+            {
+                label: 'Open',
+                click: () => {
+                    openFile();
+                }
+            }, {
+                label: 'Quit',
+                click: () => {
+                    app.quit();
+                }
+            }
+        ]
+    }
+];
+const menu = Menu.buildFromTemplate(menuTemplate);
+Menu.setApplicationMenu(menu);
+
+
+
+
+
+
+
+
+
 
 const fs = require('fs');
 
@@ -34,7 +60,7 @@ function sendSerial() {
 
 port.isReady = false;
 
-port.on('data', function (data) {
+port.on('data', (data) => {
     if (data == "begin#") {
         port.isReady = true;
         dbmsg("Arduino started");
@@ -42,7 +68,7 @@ port.on('data', function (data) {
     dbdata(data);
 });
 
-port.on('error', function (err) {
+port.on('error',  (err) => {
     dbmsg('Error: ', err.message);
 });
 
