@@ -42,16 +42,9 @@ function CODEviewer(e) {
     }
 }
 
-    var port = new SerialPort(comPort, {
-        baudRate: 9600,
-        parser: SerialPort.parsers.readline("\r\n")
-    });
-    port.isReady = false;
-
 
 function btnSendSerial(e) {
     if (port.isReady) {
-        console.log("start");
         currentLine = 0;
         e.disabled = sendNextLine();
     } else {
@@ -68,23 +61,23 @@ function sendNextLine() {
         return false;
     }
 }
-
-port.on('data', (data) => {
-    if (data == "#begin#") {
-        port.isReady = true;
-    }
-    if (data == "#next#") {
-        if (!sendNextLine()) {
-            document.getElementById("btnSend").disabled = false;
+if(PortSet){
+    port.on('data', (data) => {
+        if (data == "#begin#") {
+            port.isReady = true;
         }
-    }
-    dbdata(data);
-});
+        if (data == "#next#") {
+            if (!sendNextLine()) {
+                document.getElementById("btnSend").disabled = false;
+            }
+        }
+        dbdata(data);
+    });
 
-port.on('error', (err) => {
-    dbmsg('Error: ', err.message);
-});
-
+    port.on('error', (err) => {
+        dbmsg('Error: ', err.message);
+    });
+}
 function filterComment(line) {
     if (!(line.startsWith("(") || line.startsWith("%") || line.startsWith("\r"))) {
         return line;
