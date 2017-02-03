@@ -10,23 +10,67 @@ html, body{
 	left: 0;
 	width:100%;
 	height:100%;
+	padding:20px;
+	box-sizing: border-box;
 	border-right: 1px solid gray;
 	transition: left 0.5s;
 	animation-timing-function: linear;
-	padding:20px;
+	
 }
 #main{
 	position: absolute;
 	left: 100%;
 	width:100%;
 	height:100%;
+	padding:20px;
+	box-sizing: border-box;
 	transition: left 0.5s;
 	animation-timing-function: linear;
-	padding:20px;
+	
 }
 #fileDragDrop{
 	width:200px;
 	height:200px;
 	border-radius: 2px;
 	border: 1px solid gray;
+}
+#GCODEviewer{
+	background: #1d1f20;
+	border: 1px solid gray;
+	height:100%;
+	width:40%;
+	font-family: consolas;
+	white-space: nowrap;
+	counter-reset: line;
+	border-radius: 3px;
+	overflow: hidden;
+	float:left;
+	line-height: 1.2em;
+	color: #5e6566;
+}
+#GCODEviewer div{
+	counter-increment: line;
+}
+#GCODEviewer div:before{
+	background: #1d1f20;
+	content: counter(line);
+	width:4ch;
+	display:inline-block;
+	text-align: right;
+	padding-left: 0.5ch;
+	padding-right:1ch;
+	margin-right: 0.5ch;
+}
+.validLine{
+	background: #272a2b;
+}
+.activeLine{
+	line-height: 1.5em;
+	background: #24651d;
+	color:#98a4a6 !important;
+}
+.activeLine:before{
+	line-height: 1.5em;
+	background: #24651d !important;
+	color:#98a4a6 !important;
 }

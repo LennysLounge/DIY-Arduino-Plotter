@@ -2,17 +2,20 @@ const fs = require('fs');
 const {dialog} = require('electron').remote;
 
 function getFileFormDialog( callback ){
-	dialog.showOpenDialog(function (fileNames) {
+	dialog.showOpenDialog((fileNames) => {
         if (fileNames === undefined) return;
-		console.log( fileNames );
 		callback( fileNames[0] );
 	});
 }
 
 function openFile( path, callback ) {
 	fs.readFile( path, 'utf8', (err, data) => {
-		if (err) throw err;
+		if (err){
+			callback(false);
+			return;
+		}
 
+		var lines = [];
 		var tmpLines = data.split("\n");
 		var lastValidLine = 0;
 		var n = 0;

@@ -22,23 +22,7 @@ var port = new SerialPort(comPort, {
     });
 	port.isReady = false;
 
-function CODEviewer(e) {
-    this.lines = [];
-    this.e = e;
-    this.activeLine = 0;
-    this.addLines =  (lines) =>{
-        this.lines = lines;
-        this.build();
-    }
-    this.build =  () =>{
-        this.lines.forEach(function (line) {
-            this.e.innerHTML += "<p>" + line + "</p>";
-        }, this);
-    }
-    this.update = function (activeLine) {
 
-    }
-}
 
 
 function btnSendSerial(e) {

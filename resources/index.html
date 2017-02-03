@@ -14,14 +14,17 @@
 	<div class=".test" id="options">
 		Please Select a file <br>
 		<button onclick="btn_selectFile()">Durchsuchen</button>
+		<span id="filePath"></span><br>
+		<button onclick="btn_loadFile()">Öffnen</button><br>
 		<br>
 
 
 
-		<button onclick="btn_gotoMain()">Verbinden</button>
+		<button>Verbinden</button><br>
+		<button onclick="btn_gotoMain()">Next</button>
 	</div>
 	<div class=".test"id="main">
-		Do some shit<br>
+		<div id="GCODEviewer"></div>
 		<button onclick="btn_gotoOptions()">Optionen</button>
 	</div>
 </body>
