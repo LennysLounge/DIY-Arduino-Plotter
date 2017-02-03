@@ -6,14 +6,16 @@ if (DEBUG) {
     dbdata = console.dir.bind(window.console);
 }
 
-//var serialport = require('serialport');
 const SerialPort = require('serialport');
+const fs = require('fs');
+
 var lines = [];
 var currentLine = 0;
 
 var GCODEviewer = new CODEviewer(document.getElementById("GCODEviewer"));
 
 SerialPort.list((err, ports) => {
+    comPort=ports[0].comName;
     ports.forEach(function (port) {
         menuTemplate[1].submenu[1].submenu.push({ label: port.comName,click: () => {setCOMPort(port.comName);}});
     });
@@ -26,11 +28,11 @@ function CODEviewer(e) {
     this.lines = [];
     this.e = e;
     this.activeLine = 0;
-    this.addLines = function (lines) {
+    this.addLines =  (lines) =>{
         this.lines = lines;
         this.build();
     }
-    this.build = function () {
+    this.build =  () =>{
         this.lines.forEach(function (line) {
             this.e.innerHTML += "<p>" + line + "</p>";
         }, this);
@@ -40,14 +42,12 @@ function CODEviewer(e) {
     }
 }
 
-const fs = require('fs');
+    var port = new SerialPort(comPort, {
+        baudRate: 9600,
+        parser: SerialPort.parsers.readline("\r\n")
+    });
+    port.isReady = false;
 
-var port = new SerialPort("COM4", {
-    baudRate: 9600,
-    parser: SerialPort.parsers.readline("\r\n")
-});
-
-port.isReady = false;
 
 function btnSendSerial(e) {
     if (port.isReady) {
