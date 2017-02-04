@@ -36,23 +36,42 @@ function btn_selectFile(){
 
 //Opens file from path and parses it for comments
 function btn_loadFile(){
-	openFile( filePath, (lines) => {
-		if( lines === false ){
+	openFile( filePath, (linesLocal) => {
+		if( linesLocal === false ){
 			alert("woopsy daisy");
 		}else{
-			lines = lines;
+			lines = linesLocal;
 			fileReady = true;
+			GCODEviewer.e = document.getElementById("GCODEviewer");
 			GCODEviewer.addLines( lines );
 		}
 	});
 
+}
+function btn_refreshCOM(){
+	document.getElementById("COMports").innerHTML="";
+	Port.show();
+}
+function btn_connectCOM(){
+	var e = document.getElementById("COMports");
+	setPort = Port.open(e.options[e.selectedIndex].value);
+	PortReady = false;
+	startReading();
+}
+function btn_SendData(e){
+	if (PortReady) {
+			currentLine = 0;
+			e.disabled = sendNextLine();
+	} else {
+			alert("Serial not ready or not connected");
+	}
 }
 
 //class to controll the CodeViewer
 function CODEviewer() {
     this.lines = [];
     this.e = undefined;
-    this.activeLine = 10;
+    this.activeLine = 0;
     this.addLines =  (lines) =>{
 		this.e.innerHTML = "";
         this.lines = lines;
@@ -61,6 +80,7 @@ function CODEviewer() {
     this.build =  () =>{
 		var i = 0;
 		var validLine = 0;
+		this.e.innerHTML = "";
         this.lines.forEach((line) => {
 			var str = "<div class='";
 			if( i == validLine ){
@@ -76,6 +96,7 @@ function CODEviewer() {
         }, this);
     }
     this.update = function (activeLine) {
-
+			this.activeLine = activeLine;
+			this.build();
     }
 }

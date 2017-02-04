@@ -1,5 +1,5 @@
 
-const SerialPort = require('serialport');
+const SerialPort = require('.\ports.js');
 const fs = require('fs');
 
 var lines = [];

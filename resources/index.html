@@ -4,8 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Plotter</title>
-	<script src="index.js"></script>
 	<script src="ui.js"></script>
+	<script src="index.js"></script>
 	<script src="fs.js"></script>
 	<link rel="stylesheet" href="style.css">
 </head>
@@ -18,9 +18,10 @@
 		<button onclick="btn_loadFile()">Öffnen</button><br>
 		<br>
 
-
-
-		<button>Verbinden</button><br>
+		<button onclick="btn_refreshCOM()">Refresh</button><br>
+		<select id="COMports"></select>
+		<button onclick="btn_connectCOM()">Verbinden</button><br>
+		<button id="btn_SendData" disabled onclick="btn_SendData(this)">Send</button><br>
 		<button onclick="btn_gotoMain()">Next</button>
 	</div>
 	<div class=".test"id="main">
