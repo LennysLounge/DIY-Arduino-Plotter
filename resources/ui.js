@@ -1,28 +1,30 @@
 var lines = [];
 var filePath = "";
 var fileReady = false;
-var GCODEviewer = new CODEviewer();
-
-
-window.onload = function() {
-	GCODEviewer.e = document.getElementById("GCODEviewer");
-}
+var GCODEviewer = new CODEviewer( "GCODEviewer" );
 
 
 //	Moves the view towards the main view and hides the options
 function btn_gotoMain(){
-	var options = document.getElementById("options");
-	var main = document.getElementById("main");
-	options.style.left = "-100%";
-	main.style.left = "0";
+	var options = document.getElementById( "options" );
+	var child = options.children[0];
+	var eStyle = window.getComputedStyle( options );
+	var cStyle = window.getComputedStyle( child );
+	var width = parseInt(cStyle.getPropertyValue("width"));
+	var time = parseFloat( eStyle.getPropertyValue("transition-duration"));
+	setTimeout( () =>{
+		options.style.visibility = "hidden";
+	},time*1000);
+	options.style.left = -width + "px";
+	options.style.backgroundColor = "rgba(0, 0, 0, 0)";
 }
 
 //	Moves the view towards the Options and hides the main view
 function btn_gotoOptions(){
-	var options = document.getElementById("options");
-	var main = document.getElementById("main");
+	var options = document.getElementById( "options" );
+	options.style.visibility = "visible";
 	options.style.left = "0";
-	main.style.left = "100%";
+	options.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
 }
 
 //	File Dialog to select File
@@ -49,9 +51,9 @@ function btn_loadFile(){
 }
 
 //class to controll the CodeViewer
-function CODEviewer() {
+function CODEviewer( id ) {
     this.lines = [];
-    this.e = undefined;
+    this.e = document.getElementById( id );
     this.activeLine = 10;
     this.addLines =  (lines) =>{
 		this.e.innerHTML = "";
@@ -76,6 +78,5 @@ function CODEviewer() {
         }, this);
     }
     this.update = function (activeLine) {
-
     }
 }

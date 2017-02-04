@@ -4,29 +4,26 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Plotter</title>
-	<script src="index.js"></script>
-	<script src="ui.js"></script>
-	<script src="fs.js"></script>
-	<link rel="stylesheet" href="style.css">
+
+	<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+	<!--Let browser know website is optimized for mobile-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 </head>
 
 <body>
-	<div class=".test" id="options">
-		Please Select a file <br>
-		<button onclick="btn_selectFile()">Durchsuchen</button>
-		<span id="filePath"></span><br>
-		<button onclick="btn_loadFile()">Öffnen</button><br>
-		<br>
 
+	<!-- Insert this line above script imports  -->
+	<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
 
+	<!--Import jQuery before materialize.js-->
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script> 
 
-		<button>Verbinden</button><br>
-		<button onclick="btn_gotoMain()">Next</button>
-	</div>
-	<div class=".test"id="main">
-		<div id="GCODEviewer"></div>
-		<button onclick="btn_gotoOptions()">Optionen</button>
-	</div>
+	<!-- Insert this line after script imports -->
+	<script>if (window.module) module = window.module;</script>
+
+	
 </body>
 
 </html>
