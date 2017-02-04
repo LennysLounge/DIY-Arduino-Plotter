@@ -1,4 +1,3 @@
-
 const SerialPort = require('.\ports.js');
 const fs = require('fs');
 
@@ -8,19 +7,24 @@ var currentLine = 0;
 var GCODEviewer = new CODEviewer(document.getElementById("GCODEviewer"));
 
 SerialPort.list((err, ports) => {
-    comPort=ports[0].comName;
-    ports.forEach(function (port) {
-        menuTemplate[1].submenu[1].submenu.push({ label: port.comName,click: () => {setCOMPort(port.comName);}});
+    comPort = ports[0].comName;
+    ports.forEach(function(port) {
+        menuTemplate[1].submenu[1].submenu.push({
+            label: port.comName,
+            click: () => {
+                setCOMPort(port.comName);
+            }
+        });
     });
     setMenu();
 });
 
 setMenu();
 var port = new SerialPort(comPort, {
-        baudRate: 9600,
-        parser: SerialPort.parsers.readline("\r\n")
-    });
-	port.isReady = false;
+    baudRate: 9600,
+    parser: SerialPort.parsers.readline("\r\n")
+});
+port.isReady = false;
 
 
 
@@ -44,19 +48,19 @@ function sendNextLine() {
     }
 }
 port.on('data', (data) => {
-	if (data == "#begin#") {
-		port.isReady = true;
-	}
-	if (data == "#next#") {
-		if (!sendNextLine()) {
-			document.getElementById("btnSend").disabled = false;
-		}
-	}
-	dbdata(data);
+    if (data == "#begin#") {
+        port.isReady = true;
+    }
+    if (data == "#next#") {
+        if (!sendNextLine()) {
+            document.getElementById("btnSend").disabled = false;
+        }
+    }
+    dbdata(data);
 });
 
 port.on('error', (err) => {
-	dbmsg('Error: ', err.message);
+    dbmsg('Error: ', err.message);
 });
 
 function filterComment(line) {
@@ -67,7 +71,7 @@ function filterComment(line) {
 
 function openFile() {
     lines = [];
-    dialog.showOpenDialog(function (fileNames) {
+    dialog.showOpenDialog(function(fileNames) {
         if (fileNames === undefined) return;
         var fileName = fileNames[0];
 

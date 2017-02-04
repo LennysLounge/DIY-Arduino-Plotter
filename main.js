@@ -5,7 +5,7 @@ let win;
 app.on('ready', () => {
     win = new BrowserWindow({
 		width:800,
-		minWidth:640,
+		minWidth: 640,
 		height:600,
 		minHeight:480,
 	});
