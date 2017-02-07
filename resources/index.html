@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Plotter</title>
 
-	<!--<link rel="stylesheet" href="style.css">-->
+	<link rel="stylesheet" href="css/style.css">
 
 	<link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 	<!--Let browser know website is optimized for mobile-->
@@ -14,25 +14,32 @@
 </head>
 
 <body>
-	<div class=".test" id="options">
-		Please Select a file <br>
-		<button onclick="btn_selectFile()">Durchsuchen</button>
-		<span id="filePath"></span><br>
-		<button class="btn" onclick="btn_loadFile()">Öffnen</button><br>
-		<br>
+	<div id="options">
+		<div id="optionsPanel">
+			<div class="right-align">
+				<button class="btn btn-flat" onclick="btn_gotoMain()">Close</button>
+			</div>
+			<hr>
+			<h4>Please Select a file</h4>
+			<button class="btn" onclick="btn_selectFile()">Durchsuchen</button>
+			<span id="filePath"></span><br>
+			<button class="btn" onclick="btn_loadFile()">Öffnen</button><br>
+			<br>
+			<button class="btn" onclick="btn_refreshCOM()">Refresh</button><br>
+			<div class="input-field col s3">
+				<select class="browser-default" id="COMports"></select>
 
-		<button onclick="btn_refreshCOM()">Refresh</button><br>
-		<div class="input-field col s3">
-			<select class="browser-default" id="COMports"></select>
-
+			</div>
+			<button class="btn" onclick="btn_connectCOM()">Verbinden</button><br>
+			<button class="btn" id="btn_SendData" disabled onclick="btn_SendData(this)">Send</button><br>
+			
 		</div>
-		<button onclick="btn_connectCOM()">Verbinden</button><br>
-		<button id="btn_SendData" disabled onclick="btn_SendData(this)">Send</button><br>
-		<button onclick="btn_gotoMain()">Next</button>
+		
+	
 	</div>
-	<div class=".test" id="main">
+	<div id="main">
 		<div id="GCODEviewer"></div>
-		<button onclick="btn_gotoOptions()">Optionen</button>
+		<button class="btn" onclick="btn_gotoOptions()">Optionen</button>
 	</div>
 
 	<!-- Insert this line above script imports  -->
