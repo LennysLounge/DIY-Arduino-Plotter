@@ -1,4 +1,5 @@
 const DEBUG = true;
+const nextLetter ="!";
 var dbmsg = function() {};
 var dbdata = function() {};
 if (DEBUG) {
@@ -35,7 +36,7 @@ function startReading() {
             document.getElementById("btn_SendData").disabled = false;
             PortReady = true;
         }
-        if (data == "#next#") {
+        if (data == nextLetter) {
             if (!sendNextLine()) {
                 document.getElementById("btn_SendData").disabled = false;
             }
