@@ -1,7 +1,7 @@
 var lines = [];
 var filePath = "";
 var fileReady = false;
-var GCODEviewer = new CODEviewer("GCODEviewer");
+var GCODEviewer = new CODEviewer("GCODElist");
 
 
 //	Moves the view towards the main view and hides the options
@@ -28,6 +28,9 @@ function btn_gotoOptions() {
 }
 
 //	File Dialog to select File
+function btn_SetNextLetter(){
+    nextLetter = document.getElementById("SetNext").value;
+}
 function btn_selectFile() {
     getFileFormDialog((path) => {
         filePath = path;
@@ -44,7 +47,7 @@ function btn_loadFile() {
         } else {
             lines = linesLocal;
             fileReady = true;
-            GCODEviewer.e = document.getElementById("GCODEviewer");
+            GCODEviewer.e = document.getElementById("GCODElist");
             GCODEviewer.addLines(lines);
         }
     });
@@ -74,15 +77,16 @@ function btn_SendData(e) {
 
 //class to controll the CodeViewer
 function CODEviewer(id) {
+    console.log(id);
     this.lines = [];
-
-    this.e = undefined;
     this.activeLine = 0;
-    this.e = document.getElementById(id);
-    this.activeLine = 10;
 
+    this.e = document.getElementById(id);
+    console.log(this.e);
     this.addLines = (lines) => {
+        console.log(this.e.innerHTML);
         this.e.innerHTML = "";
+        console.log(this.e);
         this.lines = lines;
         this.build();
     }
@@ -91,25 +95,26 @@ function CODEviewer(id) {
         var validLine = 0;
         this.e.innerHTML = "";
         this.lines.forEach((line) => {
-            var str = "<div class='";
+            var str = "<div class='line ";
             if (i == validLine) {
                 validLine += line.next;
                 str += "validLine ";
-            }
-            if (i == this.activeLine) {
-                str += "activeLine ";
             }
             str += "'>" + line.line + "</div>";
             this.e.innerHTML += str;
             i++;
         }, this);
+        this.update( this.activeLine );
     }
     this.update = function(activeLine) {
-
+        
+        this.e.children[this.activeLine].className = "line validLine";
         this.activeLine = activeLine;
-        this.build();
+        this.e.children[this.activeLine].className += "activeLine";
+        var eStyle = window.getComputedStyle(this.e);
+        var lineHight = parseInt(eStyle.getPropertyValue("line-height"));
+
+        this.e.style.marginTop = -lineHight * this.activeLine+"px";
+        //this.build();
     }
 }
-$(document).ready(function() {
-    $('select').material_select();
-});

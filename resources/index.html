@@ -25,21 +25,30 @@
 			<span id="filePath"></span><br>
 			<button class="btn" onclick="btn_loadFile()">Öffnen</button><br>
 			<br>
+			<hr>
 			<button class="btn" onclick="btn_refreshCOM()">Refresh</button><br>
 			<div class="input-field col s3">
 				<select class="browser-default" id="COMports"></select>
 
-			</div>
+			</div><br>
 			<button class="btn" onclick="btn_connectCOM()">Verbinden</button><br>
-			<button class="btn" id="btn_SendData" disabled onclick="btn_SendData(this)">Send</button><br>
-			
+			<hr>Next Char or String:
+			<div clas="row"><div class="input-field col s1"><input placeholder="!next" id="SetNext" type="text"></div></div>
+			<button class="btn" onclick="btn_SetNextLetter()">Set</button><br>
+
+
+
 		</div>
-		
-	
+
+
 	</div>
 	<div id="main">
-		<div id="GCODEviewer"></div>
-		<button class="btn" onclick="btn_gotoOptions()">Optionen</button>
+		<div id="GCODEviewer">
+			<div id="GCODElist"></div>
+		</div>
+		<button class="btn" onclick="btn_gotoOptions()">Optionen</button><br>
+		<hr>
+		<button class="btn" id="btn_SendData" disabled onclick="btn_SendData(this)">Send</button>
 	</div>
 
 	<!-- Insert this line above script imports  -->
@@ -51,8 +60,9 @@
 	</script>
 
 	<!--Import jQuery before materialize.js-->
-	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-	<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+
+	<!--<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/materialize.min.js"></script>-->
 
 	<!-- Insert this line after script imports -->
 	<script>

@@ -1,5 +1,5 @@
 const DEBUG = true;
-const nextLetter ="!";
+var nextLetter ="!";
 var dbmsg = function() {};
 var dbdata = function() {};
 if (DEBUG) {
@@ -10,6 +10,7 @@ const Port = require('./port.js');
 //var PortNames = Port.show();
 var setPort;
 var currentLine;
+var lastSendLine;
 var PortReady = false;
 window.onload = () => {
     if (PortNames = Port.show()) {
@@ -22,6 +23,7 @@ function sendNextLine() {
     if (currentLine < lines.length) {
         GCODEviewer.update(currentLine);
         setPort.write(lines[currentLine].line.replace("\r", "") + "#");
+        lastSendLine = currentLine;
         currentLine += lines[currentLine].next;
         return true;
     } else {
@@ -35,11 +37,14 @@ function startReading() {
             //console.log(true);
             document.getElementById("btn_SendData").disabled = false;
             PortReady = true;
-        }
-        if (data == nextLetter) {
+        }else if (data == nextLetter) {
             if (!sendNextLine()) {
                 document.getElementById("btn_SendData").disabled = false;
             }
+        }else if(data != nextLetter){
+            console.log(lastSendLine);
+            currentLine = lastSendLine;
+            //sendNextLine();
         }
         dbdata(data);
     });
