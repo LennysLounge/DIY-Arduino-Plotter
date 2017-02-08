@@ -30,7 +30,7 @@ function sendNextLine() {
 
 function startReading() {
     setPort.on('data', (data) => {
-        if (data == "#begin#") {
+        if (data == "Fbegin#" || data == "#begin#") {
             //console.log(true);
             document.getElementById("btn_SendData").disabled = false;
             PortReady = true;

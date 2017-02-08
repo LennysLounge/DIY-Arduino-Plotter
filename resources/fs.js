@@ -14,7 +14,6 @@ function openFile( path, callback ) {
 			callback(false);
 			return;
 		}
-
 		var lines = [];
 		var tmpLines = data.split("\n");
 		var lastValidLine = 0;
