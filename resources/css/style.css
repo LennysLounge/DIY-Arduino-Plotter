@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Roboto-Mono";
+  src: url("../fonts/Roboto_Mono/RobotoMono-regular.ttf");
+}
+
 html, body{
 	margin:0;
 	width:100%;
@@ -44,7 +49,8 @@ html, body{
 	width:40%;
 	float:left;
 	border-radius: 3px;
-	overflow: hidden;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 #GCODElist{
 	position: relative;
@@ -53,7 +59,7 @@ html, body{
 	top:50%;
 	background: #1d1f20;
 	color: #5e6566;
-	font-family: consolas;
+	font-family: Roboto-Mono;
 	font-size: 1.5em;
 	line-height: 1.5em;
 	white-space: nowrap;
@@ -68,12 +74,11 @@ html, body{
 #GCODElist div:before{
 	background: #1d1f20;
 	content: counter(line);
-	width:4ch;
+	width:6ch;
 	display:inline-block;
 	text-align: right;
-	padding-left: 0.5ch;
 	padding-right:1ch;
-	margin-right: 0.5ch;
+	margin-right: 1ch;
 }
 #GCODElist .line{
 	transition: background 0.5s;
