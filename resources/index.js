@@ -22,7 +22,7 @@ window.onload = () => {
 function sendNextLine() {
     if (currentLine < lines.length) {
         GCODEviewer.update(currentLine);
-        setPort.write(lines[currentLine].line.replace("\r", "") + "#");
+        setPort.write(lines[currentLine].line.replace("\r", "") + "\n" );
         lastSendLine = currentLine;
         currentLine += lines[currentLine].next;
         return true;
